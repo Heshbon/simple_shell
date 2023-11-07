@@ -8,8 +8,8 @@
  *
  *Return: 0 (success)
  */
-int main (void)
+int main(void)
 {
-	printf("Hello, Betty!\n",);
+	printf("Hello, Betty!\n" ,);
 	return (0);
 }
