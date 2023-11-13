@@ -7,7 +7,7 @@
  */
 int excute_command(int status, char *args[])
 {
-	char input[100], *tokens[10], *token,*command;
+	char input[100], *tokens[10], *token, *command;
 	int pid, i;
 	ssize_t r;
 	int j = 0;
@@ -43,10 +43,10 @@ int excute_command(int status, char *args[])
 			free(args);
 			exit(EXIT_FAILURE);
 		}
-		else 
+		else
 		{
 			pid = fork();
-		       if (pid == 0)
+			if (pid == 0)
 			{
 				execve(command, args, NULL);
 				perror("execve");
@@ -67,5 +67,4 @@ int excute_command(int status, char *args[])
 		}
 	}
 	return (0);
-
 }
