@@ -3,8 +3,8 @@
 
 #include <stdio.h>
 #include <string.h>
-#include <stdlib.h>
 #include <unistd.h>
+#include <stdlib.h>
 #include <sys/wait.h>
 #include <sys/types.h>
 
@@ -15,6 +15,5 @@ char *_strcat(char *dest, char *src);
 char *_strndup(const char *strn);
 int _strnlen(char *c);
 char *_strncpy(char *dest, char *src);
-char *handle_path(char *command);
 
 #endif
