@@ -5,48 +5,47 @@
 /**
  * handle_path - function that handles the path
  * @command: the command passed
+ * @args: arguments
  * Return: the new path in the command read
  */
-
 char *handle_path(char *command)
 {
-	char *p = _strndup(getenv("PATH"));
-	int a = 0, n = 0;
-	char *m = strtok(p, ":");
-	char *p_array[100];
-	char *strn2 = command;
-	char *b = NULL;
-	struct stat buf;
+	struct stat buffer;
+	int l, dl;
+	char *path, *path_copy, *token, *file_path;
 
-	b = malloc(sizeof(char) * 100);
-	if (getenv("PATH")[0] == ':')
-		if (stat(command, &buf) == 0)
-			return (_strndup(command));
-	while (m != NULL)
+	path = getenv("PATH");
+	
+	if (path)
 	{
-		p_array[a++] = m;
-		m = strtok(NULL, ":");
-	}
-	p_array[a] = NULL;
-	for (n = 0; p_array[n]; n++)
-	{
-		_strncpy(b, p_array[n]);
-		_strcat(b, "/");
-		_strcat(b, strn2);
-		_strcat(b, "\0");
-
-		if (stat(b, &buf) == 0)
+		path_copy = strdup(path);
+		l = strlen(command);
+		token = strtok(path_copy, ":");
+		while (token != NULL)
 		{
-			free(p);
-			return (b);
+			dl = strlen(token);
+			file_path = malloc(l + dl + 2);
+			strcpy(file_path, token);
+			strcat(file_path, "/");
+			strcat(file_path, command);
+			strcat(file_path, "\0");
+			if  (stat(file_path, &buffer) == 0)
+			{
+				free(path_copy);
+				return (file_path);
+			}
+			else
+			{
+				free(file_path);
+				token = strtok(NULL, ":");
+			}
 		}
-		else
-			b[0] = 0;
+		free(path_copy);
+		if (stat(command, &buffer) == 0)
+		{
+			return (command);
+		}
+		return (NULL); 
 	}
-	free(p);
-	free(b);
-
-	if (stat(command, &buf) == 0)
-		return (_strndup(command));
 	return (NULL);
 }
