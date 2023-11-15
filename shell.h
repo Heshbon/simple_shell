@@ -8,17 +8,16 @@
 #include <sys/wait.h>
 #include <sys/types.h>
 
-#define MAX_INPUT_SIZE 100
-int main(int arc, char **argv);
-void rncmd(char **arv, char **envp);
-
-void excute_command(char *args[]);
-char *handle_path(char *command);
-int exce(int argc, char *argv[]);
-int _stncmp(char *strn1, char *strn2);
-char *_strcat(char *dest, char *src);
-char *_strndup(const char *strn);
-int _strnlen(char *c);
-char *_strncpy(char *dest, char *src);
-int handle_command(ssize_t rd);
+#define MAX_COMMAND_LENGTH 256
+#define MAX_ARG_COUNT 64
+/**
+ *main - main function
+ *dsp_promt - function that display promts
+ *excute_command - excute promts
+ *Return: void
+ */
+int main(void);
+void display_prompt(void);
+int excute_command(char *comand);
+void resolve_command_line(char *command_line, char **args);
 #endif
