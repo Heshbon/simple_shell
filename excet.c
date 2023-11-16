@@ -6,8 +6,19 @@
  */
 void display_prompt(void)
 {
-	printf("$ ");
-	fflush(stdout);
+	const char prompt[] = "$ ";
+
+	write(STDOUT_FILENO, prompt, sizeof(prompt) - 1);
+
+}
+/**
+ *display_error - function that display errors
+ *@message: parameter to be checked
+ *Return: void 
+ */
+void display_error(char *message)
+{
+	write(STDERR_FILENO, message, strnlen(message, MAX_COMMAND_LENGTH));
 
 }
 /**
