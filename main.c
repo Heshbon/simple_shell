@@ -1,9 +1,11 @@
 #include "shell.h"
+
 /**
  * main - the main function
  *
  * Return: void
  */
+
 int main(void)
 {
 	char error_message[MAX_COMMAND_LENGTH];
