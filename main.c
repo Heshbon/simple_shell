@@ -29,7 +29,7 @@ int main(void)
 		}
 		command_line[strcspn(command_line, "\n")] = '\0';
 		{
-			snprintf(error_message, sizeof(error_message), 
+			snprintf(error_message, sizeof(error_message),
 			"Error executing command: %s\n", command_line);
 			display_error(error_message);
 		}
